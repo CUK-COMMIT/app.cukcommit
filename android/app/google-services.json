@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "307414611875",
+    "project_id": "commit-cuk",
+    "storage_bucket": "commit-cuk.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:307414611875:android:8d35319b8a8598ee280c16",
+        "android_client_info": {
+          "package_name": "com.app.cukcommit"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAW1DzvD04bftmLSYf8H0G3U1XnVOSfjTo"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
