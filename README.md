@@ -186,8 +186,11 @@ This project is **NOT open source**.
 No permission is granted to use, copy, modify, merge, publish, distribute, sublicense, and/or sell copies of this software without explicit written permission.
 
 ---
+## 👥 Team Members
 
-## 👤 Author
-**Abhay Singh**  
-B.Tech Mathematics & Computing  
-Central University of Karnataka
+| Profile | Name |
+|--------|------|
+| <img src="https://github.com/Uni-Creator.png" width="80" height="80" style="border-radius:50%"/> | **[Abhay Singh](https://github.com/Uni-Creator)** <br/> 
+| <img src="https://github.com/Droid-DevX.png" width="80" height="80" style="border-radius:50%"/> | **[Ayush Tandon](https://github.com/Droid-DevX)** <br/>
+| <img src="https://github.com/abhaydwived.png" width="80" height="80" style="border-radius:50%"/> | **[Abhay Dwivedi](https://github.com/abhaydwived)** <br/> 
+---
