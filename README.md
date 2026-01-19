@@ -1,16 +1,193 @@
-# flutter_dating_application
+# 💖 CUK Commit — From Campus to Forever
 
-A new Flutter project.
+**CUK Commit** is a university-exclusive dating platform built for students of **Central University of Karnataka (CUK)**.  
+It focuses on **real connections** — relationships, friendships, and meaningful campus interactions — rather than mindless swiping.
 
-## Getting Started
+> 🎯 Goal: help students connect inside campus in a safe, verified, and structured way.
 
-This project is a starting point for a Flutter application.
+---
 
-A few resources to get you started if this is your first Flutter project:
+## ✨ Key Features
 
-- [Lab: Write your first Flutter app](https://docs.flutter.dev/get-started/codelab)
-- [Cookbook: Useful Flutter samples](https://docs.flutter.dev/cookbook)
+### 🔐 Authentication
+- Email + Password login/signup
+- **Email verification**
+- **Forgot password / Reset password**
+- **Google Sign-In (OAuth)** using Supabase
 
-For help getting started with Flutter development, view the
-[online documentation](https://docs.flutter.dev/), which offers tutorials,
-samples, guidance on mobile development, and a full API reference.
+### 🧑‍🎓 Verified Campus Profiles
+- Student identity-based user accounts
+- Onboarding flow to complete profile
+- User profile completion checks before discovery access
+
+### 🧾 Onboarding Flow
+- Profile Setup (name, gender, etc.)
+- Photo Upload (min 2 photos, max 6)
+- Interest selection
+- Bio setup
+
+### 📸 Photo Upload System
+- Slot-based upload (6 grid fixed)
+- Remove photo support
+- Upload progress indicator per tile
+- Powered by **Supabase Storage**
+
+### ❤️ Matching / Discovery
+- Discover page for browsing matches
+- Profile-driven filtering readiness (future scope)
+
+---
+
+## 🧱 Tech Stack
+
+### Frontend
+- **Flutter**
+- Provider (state management)
+- Custom reusable UI widgets (TextFields, Buttons, Dropdowns)
+
+### Backend
+- **Supabase**
+  - Supabase Auth
+  - Supabase Database (`profiles` table etc.)
+  - Supabase Storage (user photos)
+
+---
+
+## 🗂️ Project Structure
+
+```bash
+lib/
+├── core/
+│   ├── constants/
+│   ├── routes/
+│   ├── services/
+│   └── widgets/
+├── features/
+│   ├── auth/
+│   │   └── screens/
+│   ├── onboarding/
+│   │   ├── screens/
+│   │   ├── providers/
+│   │   └── repositories/
+│   ├── matching/
+│   │   └── screens/
+│   └── splash/
+│       └── screens/
+├── auth_gate.dart
+└── main.dart
+```
+
+---
+
+## 🔄 App Flow (Routing Logic)
+
+### 1) Splash → Welcome
+- Checks if welcome was seen using SharedPreferences
+
+### 2) Auth Gate
+Handles correct routing based on auth + profile completion:
+
+✅ Not logged in:
+- Welcome screen (first time)
+- Login screen
+
+✅ Logged in:
+- If profile incomplete → onboarding screens
+- If profile completed → Discover screen
+
+---
+
+## 🔗 Deep Linking Support
+
+The app supports mobile deep links for:
+
+- Login callback:
+  ```
+  com.app.cukcommit://login-callback/
+  ```
+
+- Reset password:
+  ```
+  com.app.cukcommit://reset-password/
+  ```
+
+---
+
+## 🚀 Setup Instructions
+
+### 1) Clone the repo
+```bash
+git clone <your-repo-url>
+cd cuk_commit
+```
+
+### 2) Install dependencies
+```bash
+flutter pub get
+```
+
+### 3) Configure environment variables
+
+Create `.env`:
+
+```env
+SUPABASE_URL=your_supabase_url
+SUPABASE_ANON_KEY=your_supabase_anon_key
+```
+
+### 4) Run the app
+```bash
+flutter run
+```
+
+---
+
+## 🔑 Supabase Setup Checklist
+
+### Auth Providers
+- Enable Email Auth
+- Enable Google OAuth
+
+### Redirect URLs
+Add these inside Supabase:
+- `com.app.cukcommit://login-callback/`
+- `com.app.cukcommit://reset-password/`
+
+### Storage Bucket
+Create bucket:
+- `user-photos` (or whatever your code expects)
+
+✅ Make sure bucket name matches your `SupabaseStorageService`.
+
+---
+
+## 📌 Security Notes
+
+- No sensitive keys are committed
+- Supabase keys are loaded using `.env`
+- Session persistence is handled by Supabase Auth internally
+
+---
+
+## 🛠 Future Improvements (Planned)
+- Match algorithm improvements
+- Filters: department/year/interests
+- Chat system (with moderation/reporting)
+- Profile verification badge system
+- Admin dashboard for moderation
+
+---
+
+## 📄 License
+
+This project is **NOT open source**.
+
+**All Rights Reserved.**  
+No permission is granted to use, copy, modify, merge, publish, distribute, sublicense, and/or sell copies of this software without explicit written permission.
+
+---
+
+## 👤 Author
+**Abhay Singh**  
+B.Tech Mathematics & Computing  
+Central University of Karnataka
