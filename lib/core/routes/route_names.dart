@@ -9,7 +9,6 @@ class RouteNames {
   static const String verification = '/verification';
   static const String authGate = '/auth-gate';
   static const String resetPassword = '/reset-password';
-  // static const String signingIn = '/signing-in';
 
 
   //onboarding routes
@@ -21,5 +20,9 @@ class RouteNames {
 
   //main app routes
   static const String discover = '/discover';
+  static const String matchDetails = '/match-details';
+  static const String profile = '/profile';
+  static const String messages = '/messages';
+  static const String activity = '/activity';
 
 }

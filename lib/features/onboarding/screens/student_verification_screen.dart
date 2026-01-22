@@ -260,17 +260,17 @@ class _StudentVerificationScreenState extends State<StudentVerificationScreen> {
         setState(() => _rollAlreadyExists = true);
 
         if (!mounted) return;
-        ScaffoldMessenger.of(context).showSnackBar(
-          SnackBar(
-            content: const Text(
-              "This roll number is already registered.",
-            ),
-            action: SnackBarAction(
-              label: "Report",
-              onPressed: _reportIdTheft,
-            ),
-          ),
-        );
+        // ScaffoldMessenger.of(context).showSnackBar(
+        //   SnackBar(
+        //     content: const Text(
+        //       "This roll number is already registered.",
+        //     ),
+        //     action: SnackBarAction(
+        //       label: "Report",
+        //       onPressed: _reportIdTheft,
+        //     ),
+        //   ),
+        // );
       }
     } catch (_) {
       // ignore
@@ -326,22 +326,22 @@ class _StudentVerificationScreenState extends State<StudentVerificationScreen> {
         const SnackBar(content: Text("Student verification submitted")),
       );
     } on PostgrestException catch (e) {
-      // ✅ IMPORTANT: capture duplicate roll error
+      //  IMPORTANT: capture duplicate roll error
       if (e.code == "23505" ||
           (e.message.toLowerCase().contains("duplicate") &&
               e.message.toLowerCase().contains("roll"))) {
         setState(() => _rollAlreadyExists = true);
 
         if (!mounted) return;
-        ScaffoldMessenger.of(context).showSnackBar(
-          SnackBar(
-            content: const Text("This roll number is already registered."),
-            action: SnackBarAction(
-              label: "Report",
-              onPressed: _reportIdTheft,
-            ),
-          ),
-        );
+        // ScaffoldMessenger.of(context).showSnackBar(
+        //   SnackBar(
+        //     content: const Text("This roll number is already registered."),
+        //     action: SnackBarAction(
+        //       label: "Report",
+        //       onPressed: _reportIdTheft,
+        //     ),
+        //   ),
+        // );
         return;
       }
 
@@ -589,7 +589,7 @@ class _StudentVerificationScreenState extends State<StudentVerificationScreen> {
                 const SizedBox(height: 14),
 
                 DropdownButtonFormField<String>(
-                  value: _year,
+                  initialValue: _year,
                   items: _years
                       .map((y) => DropdownMenuItem(value: y, child: Text(y)))
                       .toList(),
@@ -612,7 +612,7 @@ class _StudentVerificationScreenState extends State<StudentVerificationScreen> {
                 const SizedBox(height: 14),
 
                 DropdownButtonFormField<String>(
-                  value: _program,
+                  initialValue: _program,
                   items: _programs
                       .map((p) => DropdownMenuItem(value: p, child: Text(p)))
                       .toList(),

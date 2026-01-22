@@ -3,7 +3,7 @@ import 'package:cuk_commit/core/constants/color_constants.dart';
 import 'package:cuk_commit/core/constants/string_constants.dart';
 import 'package:cuk_commit/core/constants/text_styles.dart';
 import 'package:cuk_commit/core/routes/route_names.dart';
-import 'package:cuk_commit/core/services/preferences_service.dart';
+// import 'package:cuk_commit/core/services/preferences_service.dart';
 
 class WelcomeScreen extends StatelessWidget {
   const WelcomeScreen({super.key});
@@ -84,7 +84,7 @@ class WelcomeScreen extends StatelessWidget {
                         onPressed: () async {
                           try {
                             //mark welcome screen as seen
-                            await PreferencesService.setWelcomeSeen();
+                            // await PreferencesService.setWelcomeSeen();
 
                             if (context.mounted) {
                               Navigator.pushReplacementNamed(
@@ -124,7 +124,8 @@ class WelcomeScreen extends StatelessWidget {
                         onPressed: () async{
                           try{
                             //mark welcome screen as seen
-                            await PreferencesService.setWelcomeSeen();
+                            // await PreferencesService.setWelcomeSeen();
+                            // await PreferencesService.resetWelcomeSeen();
 
                             if (context.mounted) {
                               Navigator.pushReplacementNamed(

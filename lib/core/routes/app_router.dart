@@ -1,3 +1,4 @@
+import 'package:cuk_commit/features/matching/screens/match_details_screen.dart';
 import 'package:cuk_commit/features/onboarding/screens/student_verification_screen.dart';
 import 'package:flutter/material.dart'; 
 import 'package:cuk_commit/core/routes/route_names.dart'; 
@@ -13,7 +14,6 @@ import 'package:cuk_commit/features/onboarding/screens/photo_upload_screen.dart'
 import 'package:cuk_commit/features/onboarding/screens/profile_setup_screen.dart'; 
 import 'package:cuk_commit/features/onboarding/screens/welcome_screen.dart'; 
 import 'package:cuk_commit/features/splash/screens/splash_screen.dart';
-// import 'package:cuk_commit/features/auth/screens/signing_in_screen.dart';
 
 
 class AppRouter {
@@ -64,9 +64,6 @@ class AppRouter {
       case RouteNames.forgotPassword:
         return MaterialPageRoute(builder: (_) => const ForgetPasswordScreen());
 
-      // case RouteNames.signingIn:
-      //   return MaterialPageRoute(builder: (_) => const SigningInScreen());
-
       case RouteNames.verification:
         final email = settings.arguments as String?;
         return MaterialPageRoute(
@@ -89,6 +86,9 @@ class AppRouter {
       // Main screen
       case RouteNames.discover:
         return MaterialPageRoute(builder: (_) => const DiscoverScreen());
+
+      case RouteNames.matchDetails:
+        return MaterialPageRoute(builder: (_) => const MatchDetailsScreen());
 
       default:
         //  IMPORTANT: never show "No route defined" for deep links

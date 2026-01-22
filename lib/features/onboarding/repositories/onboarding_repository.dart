@@ -192,9 +192,7 @@ class OnboardingRepository {
       "year": year.trim(),
       "program": program.trim(),
       "student_id_photo_url": idPhotoUrl.trim(),
-
-      // still not verified, admin must verify OR later auto verify
-      "verification_status": "comleted",
+      "verification_status": "completed",
       "is_profile_completed": true,
 
       "updated_at": DateTime.now().toIso8601String(),

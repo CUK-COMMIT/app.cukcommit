@@ -158,7 +158,7 @@ class _VerificationScreenState extends State<VerificationScreen> {
                 const SizedBox(height: 12),
 
                 Text(
-                  "We sent a verification link to your email.\n\nAfter verifying, tap Continue to set up your profile.",
+                  "We sent a verification link to your email.\n\nAfter verifying, verify your email to set up your profile.",
                   style: AppTextStyles.bodyMediumLight.copyWith(
                     color:
                         isDarkMode ? Colors.grey.shade400 : Colors.grey.shade700,
