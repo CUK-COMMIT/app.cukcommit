@@ -6,7 +6,9 @@ import 'package:cuk_commit/core/theme/app_theme.dart';
 import 'package:provider/provider.dart';
 
 class App extends StatelessWidget {
-  const App({super.key});
+  final GlobalKey<NavigatorState> navigatorKey;
+
+  const App({super.key, required this.navigatorKey});
 
   @override
   Widget build(BuildContext context) {
@@ -15,6 +17,7 @@ class App extends StatelessWidget {
         return GestureDetector(
           onTap: () => FocusManager.instance.primaryFocus?.unfocus(),
           child: MaterialApp(
+            navigatorKey: navigatorKey,
             title: AppStrings.appName,
             debugShowCheckedModeBanner: false,
             theme: AppTheme.lightTheme,

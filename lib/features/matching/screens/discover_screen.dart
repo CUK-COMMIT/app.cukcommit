@@ -267,38 +267,36 @@ class _DiscoverScreenState extends State<DiscoverScreen>
                                   Wrap(
                                     spacing: 8,
                                     runSpacing: 8,
-                                    children:
-                                        (profile.interests as List<String>).map(
-                                          (interest) {
-                                            return Container(
-                                              padding:
-                                                  const EdgeInsets.symmetric(
-                                                    horizontal: 12,
-                                                    vertical: 6,
-                                                  ),
-                                              decoration: BoxDecoration(
-                                                color: Colors.white.withValues(
-                                                  alpha: 0.2,
-                                                ),
-                                                borderRadius:
-                                                    BorderRadius.circular(20),
-                                                border: Border.all(
-                                                  color: Colors.white
-                                                      .withValues(alpha: 0.3),
-                                                  width: 1,
-                                                ),
-                                              ),
-                                              child: Text(
-                                                interest,
-                                                style: TextStyle(
-                                                  color: Colors.white,
-                                                  fontSize: 14,
-                                                  fontWeight: FontWeight.w500,
-                                                ),
-                                              ),
-                                            );
-                                          },
-                                        ).toList(),
+                                    children: profile.interests.map((interest) {
+                                      return Container(
+                                        padding: const EdgeInsets.symmetric(
+                                          horizontal: 12,
+                                          vertical: 6,
+                                        ),
+                                        decoration: BoxDecoration(
+                                          color: Colors.white.withValues(
+                                            alpha: 0.2,
+                                          ),
+                                          borderRadius: BorderRadius.circular(
+                                            20,
+                                          ),
+                                          border: Border.all(
+                                            color: Colors.white.withValues(
+                                              alpha: 0.3,
+                                            ),
+                                            width: 1,
+                                          ),
+                                        ),
+                                        child: Text(
+                                          interest,
+                                          style: TextStyle(
+                                            color: Colors.white,
+                                            fontSize: 14,
+                                            fontWeight: FontWeight.w500,
+                                          ),
+                                        ),
+                                      );
+                                    }).toList(),
                                   ),
                                 ],
                               ),
@@ -673,7 +671,7 @@ class _DiscoverScreenState extends State<DiscoverScreen>
                 "Cancel",
                 style: TextStyle(
                   color: isDarkMode ? Colors.white : Colors.black87,
-                )
+                ),
               ),
               onTap: () {
                 Navigator.pop(context);

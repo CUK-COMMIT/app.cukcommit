@@ -56,7 +56,7 @@ class MatchingProvider extends ChangeNotifier {
 
   bool get hasMatches => _matches.isNotEmpty;
 
-  bool get isIncognito => _criteria.isIncognitoMode ?? false;
+  bool get isIncognito => _criteria.isIncognitoMode;
 
   // Premium
   bool get isPremiumUser => _profileProvider?.isPremium ?? false;

@@ -100,7 +100,7 @@ class MatchingRepository {
     });
 
     // Update last seen unless true premium + incognito enabled
-    final incognito = criteria.isIncognitoMode ?? false;
+    final incognito = criteria.isIncognitoMode;
     if (!incognito || !isPremiumUser()) {
       await _updateLastActive();
     }
@@ -118,10 +118,13 @@ class MatchingRepository {
     final user = _client.auth.currentUser;
     if (user == null) return;
 
-    await _client.from('profiles').update({
-      'last_seen_at': DateTime.now().toIso8601String(),
-      'is_online': true,
-    }).eq('user_id', user.id);
+    await _client
+        .from('profiles')
+        .update({
+          'last_seen_at': DateTime.now().toIso8601String(),
+          'is_online': true,
+        })
+        .eq('user_id', user.id);
   }
 
   Future<MatchResult> getMatchById(String matchProfileId) async {
@@ -249,7 +252,9 @@ class MatchingRepository {
     try {
       final res = await _client
           .from('exclusive_content')
-          .select('id,title,description,image_url,content,publish_date,tags,required_months')
+          .select(
+            'id,title,description,image_url,content,publish_date,tags,required_months',
+          )
           .order('publish_date', ascending: false);
 
       final list = (res as List).cast<Map<String, dynamic>>();
@@ -262,9 +267,12 @@ class MatchingRepository {
               description: (e['description'] ?? '') as String,
               imageUrl: (e['image_url'] ?? '') as String,
               content: (e['content'] ?? '') as String,
-              publishDate: DateTime.tryParse((e['publish_date'] ?? '').toString()) ??
+              publishDate:
+                  DateTime.tryParse((e['publish_date'] ?? '').toString()) ??
                   DateTime.now(),
-              tags: ((e['tags'] ?? []) as List).map((x) => x.toString()).toList(),
+              tags: ((e['tags'] ?? []) as List)
+                  .map((x) => x.toString())
+                  .toList(),
               requiredMonths: (e['required_months'] ?? 0) as int,
             ),
           )

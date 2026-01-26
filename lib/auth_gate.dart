@@ -31,8 +31,15 @@ class _AuthGateState extends State<AuthGate> {
 
     _decide();
 
-    _sub = Supabase.instance.client.auth.onAuthStateChange.listen((_) {
+    _sub = Supabase.instance.client.auth.onAuthStateChange.listen((data) {
       if (!mounted) return;
+
+      // Ignore password recovery events - let the router handle it
+      if (data.event == AuthChangeEvent.passwordRecovery) {
+        debugPrint("AuthGate: Ignoring password recovery event");
+        return;
+      }
+
       setState(() => _loading = true);
       _decide();
     });
@@ -111,6 +118,5 @@ class _AuthGateState extends State<AuthGate> {
       default:
         return const LoginScreen();
     }
-
   }
 }

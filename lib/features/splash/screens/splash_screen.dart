@@ -7,6 +7,7 @@ import 'package:cuk_commit/core/constants/string_constants.dart';
 import 'package:cuk_commit/core/constants/text_styles.dart';
 // import 'package:cuk_commit/auth_gate.dart';
 import 'package:cuk_commit/core/routes/route_names.dart';
+import 'package:supabase_flutter/supabase_flutter.dart';
 
 class SplashScreen extends StatefulWidget {
   const SplashScreen({super.key});
@@ -42,15 +43,16 @@ class _SplashScreenState extends State<SplashScreen>
       ),
     );
 
-    _pulseAnimation = TweenSequence<double>([
-      TweenSequenceItem(tween: Tween(begin: 1.0, end: 1.10), weight: 1),
-      TweenSequenceItem(tween: Tween(begin: 1.10, end: 1.0), weight: 1),
-    ]).animate(
-      CurvedAnimation(
-        parent: _animationController,
-        curve: const Interval(0.6, 1.0, curve: Curves.easeInOut),
-      ),
-    );
+    _pulseAnimation =
+        TweenSequence<double>([
+          TweenSequenceItem(tween: Tween(begin: 1.0, end: 1.10), weight: 1),
+          TweenSequenceItem(tween: Tween(begin: 1.10, end: 1.0), weight: 1),
+        ]).animate(
+          CurvedAnimation(
+            parent: _animationController,
+            curve: const Interval(0.6, 1.0, curve: Curves.easeInOut),
+          ),
+        );
 
     _animationController.forward();
     _goNext();
@@ -61,11 +63,16 @@ class _SplashScreenState extends State<SplashScreen>
     await Future.delayed(const Duration(milliseconds: 2600));
     if (!mounted) return;
 
-    // Navigator.pushReplacement(
-    //   context,
-    //   MaterialPageRoute(builder: (_) => const AuthGate()),
-    // );
-    Navigator.pushReplacementNamed(context, RouteNames.authGate);
+    // Check if user is authenticated
+    final user = Supabase.instance.client.auth.currentUser;
+
+    if (user == null) {
+      // User is not authenticated, show welcome screen
+      Navigator.pushReplacementNamed(context, RouteNames.welcome);
+    } else {
+      // User is authenticated, go to AuthGate to determine next screen
+      Navigator.pushReplacementNamed(context, RouteNames.authGate);
+    }
   }
 
   @override
@@ -124,25 +131,39 @@ class _SplashScreenState extends State<SplashScreen>
                           return Transform.scale(
                             scale: _pulseAnimation.value,
                             child: Container(
-                              width: 100,
-                              height: 100,
+                              width: 140,
+                              height: 140,
                               decoration: BoxDecoration(
-                                color: Colors.white,
+                                gradient: LinearGradient(
+                                  begin: Alignment.topLeft,
+                                  end: Alignment.bottomRight,
+                                  colors: [
+                                    Colors.white,
+                                    Colors.white.withOpacity(0.95),
+                                  ],
+                                ),
                                 shape: BoxShape.circle,
                                 boxShadow: [
                                   BoxShadow(
+                                    color: Colors.white.withOpacity(0.4),
+                                    blurRadius: 40,
+                                    spreadRadius: 8,
+                                  ),
+                                  BoxShadow(
                                     color: AppColors.primary.withOpacity(
-                                      isDarkMode ? 0.3 : 0.5,
+                                      isDarkMode ? 0.4 : 0.6,
                                     ),
-                                    blurRadius: 30,
-                                    spreadRadius: 5,
+                                    blurRadius: 50,
+                                    spreadRadius: 2,
                                   ),
                                 ],
                               ),
-                              child: Icon(
-                                Icons.favorite_rounded,
-                                size: 80,
-                                color: AppColors.primary,
+                              child: Center(
+                                child: Icon(
+                                  Icons.favorite_rounded,
+                                  size: 75,
+                                  color: AppColors.primary,
+                                ),
                               ),
                             ),
                           );
