@@ -5,7 +5,7 @@ import '../repositories/chat_repository.dart';
 import '../../../core/enums/message_type.dart';
 
 class ChatProvider with ChangeNotifier {
-  final ChatRepository _chatRepository;
+  final ChatRepository _repository;
 
   List<ChatRoom> _chatRooms = [];
   Map<String, List<ChatMessage>> _messages = {};
@@ -14,8 +14,8 @@ class ChatProvider with ChangeNotifier {
   String _currentUserId = 'current_user';
 
 
-  ChatProvider({required ChatRepository chatRepository})
-  : _chatRepository = chatRepository {
+  ChatProvider({required ChatRepository repository})
+  : _repository = repository {
     _loadChatRooms();
   }
 
@@ -25,7 +25,7 @@ class ChatProvider with ChangeNotifier {
   bool get isLoading => _isLoading;
   String? get error => _error;
   String get currentUserId => _currentUserId;
-  // ChatRepository get chatRepository => _chatRepository;
+  // ChatRepository get chatRepository => _repository;
 
   // get messages for a specific chat room
   List<ChatMessage> getMessagesForChatRoom(String chatRoomId) {
@@ -39,7 +39,7 @@ class ChatProvider with ChangeNotifier {
     notifyListeners();
 
     try {
-      _chatRooms = await _chatRepository.getChatRooms(_currentUserId);
+      _chatRooms = await _repository.getChatRooms(_currentUserId);
     } catch (e) {
       _error = e.toString();
     } finally {
@@ -56,11 +56,11 @@ class ChatProvider with ChangeNotifier {
     notifyListeners();
 
     try {
-      final messages = await _chatRepository.getChatMessages(chatRoomId);
+      final messages = await _repository.getChatMessages(chatRoomId);
       _messages[chatRoomId] = messages;
 
       // Mark messages as read
-      await _chatRepository.markMessagesAsRead(chatRoomId);
+      await _repository.markMessagesAsRead(chatRoomId);
 
       // Update unread count in chat room
       final index =
@@ -111,7 +111,7 @@ class ChatProvider with ChangeNotifier {
       notifyListeners();
 
       // Send message to repository
-      await _chatRepository.sendMessage(message);
+      await _repository.sendMessage(message);
     } catch (e) {
       _error = e.toString();
       notifyListeners();
@@ -129,7 +129,7 @@ class ChatProvider with ChangeNotifier {
     try {
       // Try to find existing chat room
       final existingRoom =
-          await _chatRepository.getChatRoomByMatchId(_currentUserId, matchId);
+          await _repository.getChatRoomByMatchId(_currentUserId, matchId);
       return existingRoom!;
     } catch (e) {
       // Create new chat room
@@ -144,7 +144,7 @@ class ChatProvider with ChangeNotifier {
         lastActivity: DateTime.now(),
       ); // ChatRoom
 
-      final createdRoom = await _chatRepository.createChatRoom(newRoom);
+      final createdRoom = await _repository.createChatRoom(newRoom);
 
       // Add to local state
       _chatRooms = [..._chatRooms, createdRoom];
@@ -202,7 +202,7 @@ class ChatProvider with ChangeNotifier {
       notifyListeners();
 
       // Send message to repository
-      await _chatRepository.sendMessage(message);
+      await _repository.sendMessage(message);
     } catch (e) {
       _error = e.toString();
       notifyListeners();
@@ -251,7 +251,7 @@ class ChatProvider with ChangeNotifier {
       notifyListeners();
 
       // Send message to repository
-      await _chatRepository.sendMessage(message);
+      await _repository.sendMessage(message);
     } catch (e) {
       _error = e.toString();
       notifyListeners();
@@ -263,7 +263,7 @@ class ChatProvider with ChangeNotifier {
       // Assuming we have a currentUserId property or method
       const String currentUserId = 'current_user'; // Replace with actual user ID in real implementation
 
-      await _chatRepository.blockUser(currentUserId, blockedUserId);
+      await _repository.blockUser(currentUserId, blockedUserId);
 
       // Optionally, update local state
       // For example, you might want to remove the chat from the list
@@ -282,7 +282,7 @@ class ChatProvider with ChangeNotifier {
       // Assuming we have a currentUserId property or method
       const String currentUserId = 'current_user'; // Replace with actual user ID in real implementation
 
-      await _chatRepository.reportUser(currentUserId, reportedUserId, reason);
+      await _repository.reportUser(currentUserId, reportedUserId, reason);
 
       // No need to update local state for reporting
     } catch (e) {

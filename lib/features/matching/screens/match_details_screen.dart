@@ -2,7 +2,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 
-import '../../../core/theme/app_colors.dart';
+import '../../../core/constants/color_constants.dart';
 import '../models/match_result.dart';
 import '../services/sharing_service.dart';
 
@@ -262,7 +262,7 @@ class _MatchDetailsScreenState
                   Row(
                     children: [
                       Text(
-                        '${widget.match.name}, ${widget.match.age}',
+                        '${widget.match.name}, ${widget.match.program}',
                         style: textTheme.headlineMedium
                             ?.copyWith(
                           fontWeight: FontWeight.bold,
@@ -282,10 +282,10 @@ class _MatchDetailsScreenState
                     ],
                   ),
 
-                  if (widget.match.occupation.isNotEmpty) ...[
+                  if (widget.match.department.isNotEmpty) ...[
                     const SizedBox(height: 6),
                     Text(
-                      widget.match.occupation,
+                      widget.match.department,
                       style: textTheme.titleMedium?.copyWith(
                         color: isDarkMode
                             ? Colors.grey.shade300
@@ -307,7 +307,7 @@ class _MatchDetailsScreenState
                       ),
                       const SizedBox(width: 4),
                       Text(
-                        widget.match.distance,
+                        widget.match.year,
                         style: textTheme.bodyMedium?.copyWith(
                           color: isDarkMode
                               ? Colors.grey.shade400

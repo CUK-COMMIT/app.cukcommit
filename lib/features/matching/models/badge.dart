@@ -23,7 +23,7 @@ class Badge {
       'icon': icon.codePoint,
       'description': description,
       'requiredMonths': requiredMonths,
-      'color': color.value,
+      'color': color.toARGB32() ,
       'isPremium': isPremium,
     };
   }
@@ -31,11 +31,13 @@ class Badge {
   factory Badge.fromMap(Map<String, dynamic> map) {
     return Badge(
       name: (map['name'] ?? "").toString(),
-      icon: IconData((map['icon'] ?? Icons.star.codePoint) as int,
-          fontFamily: 'MaterialIcons'),
+      icon: IconData(
+        (map['icon'] ?? Icons.star.codePoint) as int,
+        fontFamily: 'MaterialIcons',
+      ),
       description: (map['description'] ?? "").toString(),
       requiredMonths: (map['requiredMonths'] ?? 0) as int,
-      color: Color((map['color'] ?? Colors.blue.value) as int),
+      color: Color((map['color'] ?? Colors.blue.toARGB32()) as int),
       isPremium: (map['isPremium'] ?? true) as bool,
     );
   }

@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
-import 'package:flutter_dating_application/features/icebreakers/models/icebreaker.dart';
-import 'package:flutter_dating_application/features/icebreakers/providers/icebreaker_provider.dart';
+import 'package:cuk_commit/features/icebreaker/models/icebreaker.dart';
+import 'package:cuk_commit/features/icebreaker/providers/icebreaker_provider.dart';
 
 class IcebreakerDetailScreen extends StatefulWidget {
   final Icebreaker icebreaker;

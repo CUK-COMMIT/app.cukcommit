@@ -1,9 +1,9 @@
+import 'package:cuk_commit/core/constants/color_constants.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
 import '../providers/profile_provider.dart';
-import '../providers/matching_provider.dart';
-import '../../../core/theme/app_colors.dart';
+import '../../matching/providers/matching_provider.dart';
 
 class PremiumScreen extends StatefulWidget {
   const PremiumScreen({Key? key}) : super(key: key);
@@ -271,13 +271,11 @@ class _PremiumScreenState extends State<PremiumScreen> {
 
                           Switch(
                             value:
-                                matchingProvider.isIncognitoMode,
+                                matchingProvider.isIncognito,
                             onChanged: (value) async {
                               try {
                                 await matchingProvider
-                                    .toggleIncognitoMode(
-                                  value,
-                                );
+                                    .setIncognitoMode(value);
 
                                 if (mounted) {
                                   ScaffoldMessenger.of(context)

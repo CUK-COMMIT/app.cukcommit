@@ -1,11 +1,8 @@
-// features/chat/screens
-import 'dart:io';
-
 import 'package:flutter/material.dart';
-import 'package:flutter_dating_application/core/constants/color_constants.dart';
-import 'package:flutter_dating_application/features/chat/models/chat_message.dart';
-import 'package:flutter_dating_application/features/chat/models/chat_room.dart';
-import 'package:flutter_dating_application/features/chat/providers/chat_provider.dart';
+import 'package:cuk_commit/core/constants/color_constants.dart';
+import 'package:cuk_commit/features/chat/models/chat_message.dart';
+import 'package:cuk_commit/features/chat/models/chat_room.dart';
+import 'package:cuk_commit/features/chat/providers/chat_provider.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:provider/provider.dart';
 import 'package:video_player/video_player.dart';
@@ -95,7 +92,7 @@ class _ChatScreenState extends State<ChatScreen> {
           onPressed: () => Navigator.pop(context),
           icon: Icon(
             Icons.arrow_back_ios, 
-            color: isDarkMode ? Colors.white : Colors.greyshade800,
+            color: isDarkMode ? Colors.white : Colors.grey.shade800,
             size:20,
           ),// icon 
         ),//iconButton
@@ -141,7 +138,7 @@ class _ChatScreenState extends State<ChatScreen> {
                 Text(
                   widget.chatRoom.matchName,
                   style: TextStyle(
-                    color: isDarkMode ? Colors.white : Colors.textPrimaryLight,
+                    color: isDarkMode ? Colors.white : AppColors.textPrimaryLight,
                     fontSize: 16,
                     fontWeight: FontWeight.bold,
                   ), //TextStyle
@@ -214,7 +211,7 @@ class _ChatScreenState extends State<ChatScreen> {
                   itemCount: messages.length,
                   itemBuilder: (context, index) {
                     final message = messages[index];
-                    final isMe = message.senderId == chatProvider.currentUser.id;
+                    final isMe = message.senderId == chatProvider.currentUserId;
                     final showDate = index == 0 || 
                     !_isSameDay(
                       messages[index - 1].timestamp,
@@ -372,7 +369,7 @@ class _ChatScreenState extends State<ChatScreen> {
     final text = _messageController.text.trim();
     if(text.isEmpty) return;
 
-    final content = _messageController.text.train();
+    final content = _messageController.text.trim();
     _messageController.clear();
    
     setState(() {

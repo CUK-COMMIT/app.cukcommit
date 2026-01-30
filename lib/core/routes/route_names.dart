@@ -23,6 +23,7 @@ class RouteNames {
   static const String matchDetails = '/match-details';
   static const String profile = '/profile';
   static const String messages = '/messages';
-  static const String activity = '/activity';
+  static const String notifications = '/notification';
+  
 
 }

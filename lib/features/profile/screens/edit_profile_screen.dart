@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
 import '../providers/profile_provider.dart';
-import '../../../core/theme/app_colors.dart';
+import '../../../core/constants/color_constants.dart';
 import '../../../core/widgets/custom_button.dart';
 
 class EditProfileScreen extends StatefulWidget {
@@ -17,9 +17,9 @@ class _EditProfileScreenState extends State<EditProfileScreen> {
 
   late TextEditingController _nameController;
   late TextEditingController _bioController;
-  late TextEditingController _occupationController;
-  late TextEditingController _educationController;
-  late TextEditingController _locationController;
+  late TextEditingController _departmentController;
+  late TextEditingController _programController;
+  late TextEditingController _yearController;
 
   late int _age;
   bool _isloading = false;
@@ -30,28 +30,28 @@ class _EditProfileScreenState extends State<EditProfileScreen> {
 
     final provider =
         Provider.of<ProfileProvider>(context, listen: false);
-    final profile = provider.profile;
+    final profile = provider.profileDetails;
 
     _nameController =
         TextEditingController(text: profile?.name ?? '');
     _bioController =
         TextEditingController(text: profile?.bio ?? '');
-    _occupationController =
-        TextEditingController(text: profile?.occupation ?? '');
-    _educationController =
-        TextEditingController(text: profile?.education ?? '');
-    _locationController =
-        TextEditingController(text: profile?.location ?? '');
-    _age = profile?.age ?? 18;
+    _departmentController =
+        TextEditingController(text: profile?.department ?? '');
+    _programController =
+        TextEditingController(text: profile?.program ?? '');
+    _yearController =
+        TextEditingController(text: profile?.year ?? '');
+    // _age = profile?.age ?? 18;
   }
 
   @override
   void dispose() {
     _nameController.dispose();
     _bioController.dispose();
-    _occupationController.dispose();
-    _educationController.dispose();
-    _locationController.dispose();
+    _departmentController.dispose();
+    _programController.dispose();
+    _yearController.dispose();
     super.dispose();
   }
 
@@ -63,19 +63,18 @@ class _EditProfileScreenState extends State<EditProfileScreen> {
 
       final provider =
           Provider.of<ProfileProvider>(context, listen: false);
-      final currentProfile = provider.profile;
+      final currentProfile = provider.profileDetails;
 
       if (currentProfile != null) {
         final updatedProfile = currentProfile.copyWith(
           name: _nameController.text,
           bio: _bioController.text,
-          occupation: _occupationController.text,
-          education: _educationController.text,
-          location: _locationController.text,
-          age: _age,
+          department: _departmentController.text,
+          program: _programController.text,
+          year: _yearController.text,
         );
 
-        await provider.updateProfile(updatedProfile);
+        await provider.updateProfileDetails(updatedProfile);
 
         setState(() {
           _isloading = false;

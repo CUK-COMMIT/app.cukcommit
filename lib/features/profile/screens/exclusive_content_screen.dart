@@ -1,7 +1,7 @@
-// Profile -> Screens
+import 'package:cuk_commit/features/matching/models/exclusive_content.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_dating_application/core/constants/color_constants.dart';
-import 'package:flutter_dating_application/features/matching_provider.dart';
+import 'package:cuk_commit/core/constants/color_constants.dart';
+import 'package:cuk_commit/features/matching/providers/matching_provider.dart';
 import 'package:provider/provider.dart';
 class ExclusiveContentScreen extends StatelessWidget {
   const ExclusiveContentScreen({Key? key}) : super(key: key);
@@ -88,7 +88,7 @@ class ExclusiveContentScreen extends StatelessWidget {
             ),
     );
   }
-  widget _buildContentCard(
+  Widget _buildContentCard(
     BuildContext context,
     ExclusiveContent content,
     bool isDarkMode,

@@ -1,3 +1,4 @@
+import 'package:cuk_commit/features/matching/models/badge.dart';
 import 'package:flutter/foundation.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
@@ -125,6 +126,39 @@ class MatchingProvider extends ChangeNotifier {
 
     await _repo.saveMatchCriteria(newCriteria);
     await refreshMatches(resetIndex: true);
+  }
+
+  /// Toggle incognito mode on/off
+  /// Incognito mode is a premium feature that hides your profile from others
+  Future<void> toggleIncognitoMode() async {
+    if (!isPremiumUser) {
+      throw Exception('Incognito mode is a premium feature');
+    }
+
+    final newCriteria = _criteria.copyWith(
+      isIncognitoMode: !_criteria.isIncognitoMode,
+    );
+
+    await updateCriteria(newCriteria);
+  }
+
+  /// Set incognito mode to a specific value
+  Future<void> setIncognitoMode(bool enabled) async {
+    if (enabled && !isPremiumUser) {
+      throw Exception('Incognito mode is a premium feature');
+    }
+
+    if (_criteria.isIncognitoMode == enabled) {
+      return; // Already in the desired state
+    }
+
+    final newCriteria = _criteria.copyWith(isIncognitoMode: enabled);
+
+    await updateCriteria(newCriteria);
+  }
+
+  List<Badge> getPremiumBadges() {
+    return Badge.allBadges;
   }
 
   // ---------------------------

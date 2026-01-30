@@ -1,4 +1,8 @@
 // main.dart
+import 'package:cuk_commit/features/chat/providers/chat_provider.dart';
+import 'package:cuk_commit/features/chat/repositories/chat_repository.dart';
+import 'package:cuk_commit/features/icebreaker/providers/icebreaker_provider.dart';
+import 'package:cuk_commit/features/icebreaker/repositories/icebreaker_repository.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_dotenv/flutter_dotenv.dart';
 import 'package:provider/provider.dart';
@@ -86,6 +90,8 @@ Future<void> main() async {
   final onboardingRepository = OnboardingRepository();
   final matchingRepository = MatchingRepository();
   final profileRepository = ProfileRepository();
+  final chatRepository = ChatRepository();
+  final icebreakerRepository = IcebreakerRepository();
 
   runApp(
     MultiProvider(
@@ -99,6 +105,12 @@ Future<void> main() async {
         ),
         ChangeNotifierProvider(
           create: (_) => ProfileProvider(repository: profileRepository),
+        ),
+        ChangeNotifierProvider(
+          create: (_) => ChatProvider(repository: chatRepository),
+        ),
+        ChangeNotifierProvider(
+          create: (_) => IcebreakerProvider(repository: icebreakerRepository),
         ),
       ],
       child: App(navigatorKey: navigatorKey),

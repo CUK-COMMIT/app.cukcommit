@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
-import '../../..core/constants/color_constants.dart';
+import '../../../core/constants/color_constants.dart';
 import '../models/icebreaker.dart';
 import '../providers/icebreaker_provider.dart';
 
@@ -53,7 +53,7 @@ class _IcebreakerSuggestionWidgetState extends State<IcebreakerSuggestionWidget>
 
         if (_isLoading){
             return Container(
-                padding: const EdgeInserts.all(16),
+                padding: const EdgeInsets.all(16),
                 decoration: BoxDecoration(
                     color: isDarkMode ? Colors.grey.shade800 : Colors.grey.shade100,
                     borderRadius: BorderRadius.circular(12),

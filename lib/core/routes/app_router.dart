@@ -1,6 +1,8 @@
 import 'package:cuk_commit/features/chat/screens/chat_list_screen.dart';
 import 'package:cuk_commit/features/matching/screens/match_details_screen.dart';
+import 'package:cuk_commit/features/notifications/screens/notifications_screen.dart';
 import 'package:cuk_commit/features/onboarding/screens/student_verification_screen.dart';
+import 'package:cuk_commit/features/profile/screens/profile_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:cuk_commit/core/routes/route_names.dart';
 import 'package:cuk_commit/auth_gate.dart';
@@ -124,6 +126,12 @@ class AppRouter {
 
       case RouteNames.messages:
         return MaterialPageRoute(builder: (_) => const ChatListScreen());
+
+      case RouteNames.profile:
+        return MaterialPageRoute(builder: (_) => const ProfileScreen());
+      
+      case RouteNames.notifications:
+        return MaterialPageRoute(builder: (_) => const NotificationsScreen());
 
       default:
         //  IMPORTANT: never show "No route defined" for deep links

@@ -1,5 +1,6 @@
 import 'dart:convert';
 
+import 'package:cuk_commit/features/matching/models/badge.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:supabase_flutter/supabase_flutter.dart';
 
@@ -140,6 +141,10 @@ class MatchingRepository {
     if (res == null) throw Exception("Match not found");
 
     return MatchResult.fromSupabase(res);
+  }
+
+  List<Badge> getPremiumBadges() {
+    return Badge.allBadges;
   }
 
   // ============================================================

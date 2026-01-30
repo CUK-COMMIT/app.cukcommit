@@ -31,7 +31,7 @@ class _MainLayoutState extends State<MainLayout> {
         Navigator.pushReplacementNamed(context, RouteNames.profile);
         break;
       case 3:
-        Navigator.pushReplacementNamed(context, RouteNames.activity);
+        Navigator.pushReplacementNamed(context, RouteNames.notifications);
         break;
     }
   }
